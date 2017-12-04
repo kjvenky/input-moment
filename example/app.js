@@ -8,16 +8,29 @@ import packageJson from '../package.json';
 
 class App extends Component {
   state = {
-    m: moment()
+    m: moment(),
+    value: false
   };
 
-  handleChange = m => {
-    this.setState({ m });
+  // set valuse based on the current time
+  
+
+  handleChange = (m, value) => {
+    if(value == 'changeAMPM') {
+      this.setState({ value: !this.state.value });  
+    } else if ( value == 'hours' || value == 'minutes'){
+      if(this.state.value){
+        this.setState({ m });
+      } else {
+        this.setState({ m });
+      }
+    } 
   };
 
   handleSave = () => {
     console.log('saved', this.state.m.format('llll'));
   };
+
 
   render() {
     return (
@@ -28,6 +41,7 @@ class App extends Component {
         <h2>{packageJson.description}</h2>
         <form>
           <div className="input">
+            {this.state.value ? 'AM' : 'PM'}
             <input type="text" value={this.state.m.format('llll')} readOnly />
           </div>
           <InputMoment
@@ -35,6 +49,8 @@ class App extends Component {
             onChange={this.handleChange}
             minStep={5}
             onSave={this.handleSave}
+            onToggle={this.onToggle}
+            is12Hr={true}
           />
         </form>
       </div>

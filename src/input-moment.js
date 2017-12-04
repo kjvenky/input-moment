@@ -16,6 +16,12 @@ export default class InputMoment extends Component {
     tab: 0
   };
 
+  componentWillMount() {
+    if(moment().format('llll').indexOf('PM') > -1) {
+      this.setState({ value: false })
+    }
+  }
+  
   handleClickTab = (e, tab) => {
     e.preventDefault();
     this.setState({ tab: tab });
@@ -36,6 +42,8 @@ export default class InputMoment extends Component {
       minStep,
       hourStep,
       onSave,
+      onToggle,
+      is12Hr,
       ...props
     } = this.props;
     const cls = cx('m-input-moment', className);
@@ -73,6 +81,9 @@ export default class InputMoment extends Component {
             minStep={this.props.minStep}
             hourStep={this.props.hourStep}
             onChange={this.props.onChange}
+            onToggle={this.props.onToggle}
+            is12Hr={this.props.is12Hr}
+            value={this.state.value}
           />
         </div>
 

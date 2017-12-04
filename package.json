@@ -50,7 +50,9 @@
   "dependencies": {
     "classnames": "^2.2.0",
     "lodash": "^4.17.4",
-    "react-input-slider": "^4.0.0"
+    "react-input-slider": "^4.0.0",
+    "react-toggle": "^4.0.2",
+    "react-toggle-button": "^2.2.0"
   },
   "repository": {
     "type": "git",
